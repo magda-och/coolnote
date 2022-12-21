@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form class="data" th:action="@{/note}" th:object="${newNote}" method="post" >
+    <p>Title: <input type="text" th:field="*{title}"></p> <!-- gwazdka oznacza że tyczy się obiektu nadrzędnego-->
+    <p>Description: <input type="text" th:field="*{description}"></p>
+    <button id="sign" class="sign-button">Add new note </button></form>
+
+</body>
+</html>
