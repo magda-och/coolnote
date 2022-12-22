@@ -11,6 +11,9 @@
 <p th:each="note: ${notes}">
     <td th:text="${note.getTitle()}"></td>
     <td th:text="${note.getDescription()}"></td>
+
+<td class="table-success"><a th:href="@{'/editNote/{id}'(id=${note.getTime})}">Edytuj</a></td>
+<td class="table-danger"><a th:href="@{'/deleteNote/{id}'(id=${note.getTime})}"> Usuń</a></td>
 <td> <small th:text="Edited + ${note.getStringCounter} + times"></small></td>
 
 </p>

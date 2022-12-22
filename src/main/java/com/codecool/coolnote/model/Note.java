@@ -1,18 +1,22 @@
 package com.codecool.coolnote.model;
 
+import java.time.LocalDateTime;
+
 public class Note {
     public String title;
     private String description;
+    private final LocalDateTime time;
 
     private int counter;
 
-    public Note(String title, String description) {
-        this.title = title;
-        this.description = description;
-        counter = 0;
-    }
+//    public Note(String title, String description) {
+//        this.title = title;
+//        this.description = description;
+//        counter = 0;
+//    }
 
     public Note() {
+        this.time = LocalDateTime.now();
     }
 
     public String getTitle() {
@@ -45,5 +49,9 @@ public class Note {
 
     public void setCounter(int counter) {
         this.counter = counter;
+    }
+
+    public String getTime() {
+        return time.toString();
     }
 }

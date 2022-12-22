@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.LinkedList;
@@ -21,7 +21,7 @@ public class NoteController {
     @GetMapping("/")
     public String home(Model model) {
         String myMessage;
-        if (noteList.isEmpty()){
+        if (noteList.isEmpty()) {
             myMessage = "There is no notes";
         } else {
             myMessage = "";
@@ -42,10 +42,20 @@ public class NoteController {
     public String addNewNote(@ModelAttribute Note note) {
         noteList.add(note);
         return "redirect:/";
-
     }
 
+    @GetMapping("/editNote/{id}")
+    public String getEditNote(Model model, @PathVariable("id") String id) {
+        Note noteToEdit = noteList.stream().filter(n -> id.equals(n.getTime())).findFirst().get();
+        model.addAttribute("editedNote", noteToEdit);
+        return "editNote";
+    }
 
+    @PostMapping("/editNote/{id}")
+    public String postEditNote(@ModelAttribute("note") Note editedNote, @PathVariable("id") String id) {
+        noteList.add(editedNote);
+        return "redirect:/";
+    }
 }
 
 
